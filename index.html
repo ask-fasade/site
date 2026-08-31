@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АСК-Фасад — термопанели собственного производства | аул Псыж, КЧР</title>
+<meta name="description" content="Производим термопанели из гибкого кирпича и клинкерной плитки «Керамин». До 3000 м² в месяц, срок заказа — 10 рабочих дней. Аул Псыж, ул. Шоссейная, 135. Тел. 8-928-384-50-80">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23C14E27'/%3E%3Crect x='5' y='8' width='10' height='7' fill='%23F2E9DB'/%3E%3Crect x='17' y='8' width='10' height='7' fill='%23F2E9DB'/%3E%3Crect x='11' y='17' width='10' height='7' fill='%23F2E9DB'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+  /* ============ БАЗА ============ */
+  :root{
+    --bg:#F4EDE2; --bg2:#ECE2D2;
+    --ink:#241B12; --ink2:#6E5D4B;
+    --terra:#C14E27; --terra-d:#8F3418; --terra-dd:#65240F;
+    --sand:#D9A15F;
+    --dark:#1C1510; --dark2:#251C14; --dark3:#31261B;
+    --cream:#F2E9DB; --cream2:#C4B29C;
+    --line:rgba(36,27,18,.16); --line-d:rgba(242,233,219,.14);
+    --ff-d:'Prata',Georgia,serif;
+    --ff-t:'Onest',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:88px}
+  body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--ff-t);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--terra);color:var(--cream)}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#C7B49A;border-radius:6px;border:3px solid var(--bg)}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+  h1,h2,h3{font-family:var(--ff-d);font-weight:400;line-height:1.12}
+  i.ph,i.ph-fill{line-height:1}
+
+  /* появление при скролле */
+  [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].revealed{opacity:1;transform:none}
+
+  /* кнопки */
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;font:600 13px/1 var(--ff-t);letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:.3s;white-space:nowrap}
+  .btn i{font-size:17px}
+  .btn-solid{background:var(--terra);color:var(--cream)}
+  .btn-solid:hover{background:var(--ink);transform:translateY(-2px)}
+  .btn-ghost{border:1px solid rgba(242,233,219,.45);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--cream);background:rgba(242,233,219,.08)}
+  .btn-dark{border:1px solid var(--ink);color:var(--ink)}
+  .btn-dark:hover{background:var(--ink);color:var(--cream)}
+
+  /* ============ ШАПКА ============ */
+  .header{position:fixed;top:0;left:0;right:0;z-index:60;padding:20px 0;transition:.35s;color:var(--cream)}
+  .header.scrolled{background:rgba(24,17,11,.88);backdrop-filter:blur(14px);padding:11px 0;border-bottom:1px solid rgba(242,233,219,.09)}
+  .header-in{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{display:flex;flex-direction:column;line-height:1.15}
+  .logo b{font:400 21px var(--ff-d);letter-spacing:.06em}
+  .logo span{font:500 10px var(--ff-t);letter-spacing:.3em;text-transform:uppercase;color:var(--cream2)}
+  .nav{display:flex;gap:30px}
+  .nav a{font:500 13px var(--ff-t);letter-spacing:.1em;text-transform:uppercase;opacity:.85;position:relative;padding:4px 0;transition:.25s}
+  .nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--sand);transition:.3s}
+  .nav a:hover{opacity:1}
+  .nav a:hover::after{width:100%}
+  .header-phone{display:flex;align-items:center;gap:9px;font:600 15px var(--ff-t);letter-spacing:.03em}
+  .header-phone i{color:var(--sand);font-size:18px}
+  .burger{display:none;font-size:26px;color:var(--cream)}
+
+  /* мобильное меню */
+  .mnav{position:fixed;inset:0;z-index:70;background:var(--dark);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:8vh 8vw;opacity:0;visibility:hidden;transition:.4s}
+  .mnav.open{opacity:1;visibility:visible}
+  .mnav a.mlink{font:400 clamp(30px,7vw,44px) var(--ff-d);padding:12px 0;border-bottom:1px solid var(--line-d);transition:.25s}
+  .mnav a.mlink:hover{color:var(--sand);padding-left:10px}
+  .mnav-close{position:absolute;top:22px;right:24px;font-size:30px}
+  .mnav-foot{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+  .mnav-foot a{font:600 17px var(--ff-t);display:flex;align-items:center;gap:10px}
+  .mnav-foot i{color:var(--sand)}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;background:#140E09;color:var(--cream);overflow:hidden}
+  #heroCanvas{position:absolute;inset:0;width:100%;height:100%}
+  .hero-veil{position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 40%, transparent 30%, rgba(12,8,5,.55) 100%);pointer-events:none}
+  .hero-in{position:relative;z-index:2;padding-top:120px;padding-bottom:150px;pointer-events:none}
+  .hero-in .btn,.hero-facts{pointer-events:auto}
+  .kicker{display:inline-flex;align-items:center;gap:14px;font:600 12px var(--ff-t);letter-spacing:.32em;text-transform:uppercase;color:var(--sand)}
+  .kicker::before{content:'';width:44px;height:1px;background:var(--sand)}
+  .hero h1{font-size:clamp(2.5rem,6.2vw,5rem);max-width:16ch;margin:22px 0 26px}
+  .hero h1 em{font-style:normal;color:var(--sand)}
+  .hero-sub{max-width:56ch;color:#D9CBB6;font-size:clamp(15px,1.6vw,18px)}
+  .hero-sub strong{color:var(--cream);font-weight:600}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .hero-facts{position:absolute;left:0;right:0;bottom:0;z-index:2;border-top:1px solid rgba(242,233,219,.16);background:rgba(16,11,7,.42);backdrop-filter:blur(6px)}
+  .hero-facts-in{display:grid;grid-template-columns:repeat(4,1fr)}
+  .fact{padding:20px 26px;border-left:1px solid rgba(242,233,219,.14)}
+  .fact:first-child{border-left:none;padding-left:0}
+  .fact b{display:block;font:400 clamp(20px,2.4vw,30px) var(--ff-d);color:var(--cream)}
+  .fact span{font:500 11px var(--ff-t);letter-spacing:.16em;text-transform:uppercase;color:#A6957E}
+
+  /* ============ БЕГУЩАЯ СТРОКА ============ */
+  .marquee{background:var(--terra);color:var(--cream);overflow:hidden;padding:15px 0;border-block:1px solid rgba(0,0,0,.18)}
+  .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+  .mq-group{display:flex;align-items:center;gap:44px;padding-right:44px;font:600 12px var(--ff-t);letter-spacing:.24em;text-transform:uppercase;white-space:nowrap}
+  .mq-group i{font-size:9px;color:#F3CFA9}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ============ СЕКЦИИ ОБЩЕЕ ============ */
+  section.sec{padding:clamp(76px,9vw,130px) 0}
+  .sec-head{margin-bottom:clamp(44px,5vw,72px);max-width:820px}
+  .sec-head .kicker{color:var(--terra)}
+  .sec-head .kicker::before{background:var(--terra)}
+  .sec.dark .kicker{color:var(--sand)}
+  .sec.dark .kicker::before{background:var(--sand)}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,3.1rem);margin-top:18px}
+  .sec-head p{margin-top:16px;color:var(--ink2);max-width:60ch}
+  .sec.dark{background:var(--dark);color:var(--cream)}
+  .sec.dark .sec-head p{color:#B3A28B}
+
+  /* ============ ПРОДУКЦИЯ ============ */
+  .prod{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding:clamp(36px,4vw,58px) 0;border-top:1px solid var(--line)}
+  .prod:last-child{border-bottom:1px solid var(--line)}
+  .prod-txt{grid-column:span 6}
+  .prod-vis{grid-column:span 6}
+  .prod:nth-child(even) .prod-txt{order:2}
+  .prod:nth-child(even) .prod-vis{order:1}
+  .prod-num{font:400 clamp(42px,5vw,64px) var(--ff-d);color:var(--terra);opacity:.9;line-height:1}
+  .prod h3{font-size:clamp(1.5rem,2.6vw,2.2rem);margin:14px 0 16px}
+  .prod p{color:var(--ink2);max-width:52ch}
+  .spec{margin-top:26px;display:flex;flex-direction:column;gap:11px}
+  .spec div{display:flex;align-items:baseline;gap:12px;font-size:14.5px}
+  .spec dt{color:var(--ink2);white-space:nowrap}
+  .spec i{flex:1;border-bottom:1px dotted #B9A78D;transform:translateY(-4px)}
+  .spec b{font-weight:600;text-align:right}
+  .wall{position:relative;border-radius:4px;overflow:hidden;box-shadow:0 24px 60px -22px rgba(36,20,8,.45);aspect-ratio:16/10;background:#17100A}
+  .wall svg{width:100%;height:100%}
+  .wall-badge{position:absolute;left:16px;bottom:16px;background:rgba(24,16,10,.82);backdrop-filter:blur(6px);color:var(--cream);font:600 11px var(--ff-t);letter-spacing:.2em;text-transform:uppercase;padding:9px 14px;border-radius:2px;display:flex;align-items:center;gap:8px}
+  .wall-badge i{color:var(--sand)}
+  .decor-card{background:var(--dark2);border-radius:4px;aspect-ratio:16/10;padding:clamp(16px,2.4vw,34px);display:flex;align-items:center;justify-content:center;box-shadow:0 24px 60px -22px rgba(36,20,8,.5)}
+  .decor-card svg{width:100%;height:100%}
+
+  /* ============ РАЗРЕЗ ПАНЕЛИ ============ */
+  .cut-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,70px);align-items:center}
+  .cut-figure{background:var(--dark2);border:1px solid var(--line-d);border-radius:4px;padding:clamp(14px,2.4vw,34px)}
+  .cut-figure svg{width:100%;height:auto}
+  .cut-figure g{transition:opacity .35s}
+  .cut-figure.focus-glue #layerFace,.cut-figure.focus-glue #layerPps,
+  .cut-figure.focus-pps #layerFace,.cut-figure.focus-pps #layerGlue,
+  .cut-figure.focus-face #layerGlue,.cut-figure.focus-face #layerPps{opacity:.28}
+  .cut-tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+  .cut-tab{padding:12px 20px;border:1px solid var(--line-d);border-radius:2px;font:600 12.5px var(--ff-t);letter-spacing:.08em;color:#CDBCA4;transition:.25s}
+  .cut-tab:hover{border-color:var(--sand);color:var(--cream)}
+  .cut-tab.active{background:var(--terra);border-color:var(--terra);color:var(--cream)}
+  .cut-legend{list-style:none;display:flex;flex-direction:column}
+  .cut-legend li{padding:20px 18px;border-top:1px solid var(--line-d);cursor:pointer;transition:.3s;border-radius:3px}
+  .cut-legend li:last-child{border-bottom:1px solid var(--line-d)}
+  .cut-legend li:hover{background:rgba(242,233,219,.05)}
+  .cut-legend li.active{background:rgba(193,78,39,.12)}
+  .cut-legend h4{display:flex;align-items:center;gap:12px;font:600 15px var(--ff-t);letter-spacing:.04em}
+  .cut-legend h4 s{width:13px;height:13px;border-radius:2px;text-decoration:none;flex:none}
+  .cut-legend p{margin-top:9px;font-size:14px;color:#B3A28B;display:none}
+  .cut-legend li.active p{display:block;animation:fadeUp .4s}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .cut-note{margin-top:20px;font-size:13.5px;color:#9C8B74;display:flex;gap:10px;align-items:flex-start}
+  .cut-note i{color:var(--sand);font-size:17px;flex:none;margin-top:1px}
+
+  /* ============ КОНФИГУРАТОР РАСЦВЕТОК ============ */
+  .cfg-grid{display:grid;grid-template-columns:minmax(0,6.5fr) minmax(0,5.5fr);gap:clamp(30px,5vw,70px);align-items:center}
+  .cfg-wall{border-radius:4px;overflow:hidden;box-shadow:0 30px 70px -25px rgba(60,30,10,.5);aspect-ratio:16/10;background:#17100A}
+  .cfg-wall rect{transition:fill .55s ease}
+  .cfg-name{margin-top:18px;display:flex;align-items:center;gap:12px;font:400 clamp(20px,2.2vw,28px) var(--ff-d)}
+  .cfg-name i{color:var(--terra)}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:12px;margin:26px 0 8px}
+  .swatch{aspect-ratio:1;border-radius:50%;background:var(--c);border:2px solid transparent;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25),0 4px 12px -4px rgba(36,20,8,.4);transition:.25s;position:relative}
+  .swatch:hover{transform:translateY(-3px) scale(1.06)}
+  .swatch.active{border-color:var(--ink);transform:scale(1.1)}
+  .swatch.active::after{content:'\E14C';font-family:'Phosphor';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:18px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .swatch-cap{font:500 11px var(--ff-t);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+  .cfg-actions{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
+
+  /* ============ ЦИФРЫ ============ */
+  .stats{background:var(--terra-dd);color:var(--cream);padding:clamp(56px,7vw,90px) 0;border-block:1px solid rgba(0,0,0,.25)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:8px 34px;border-left:1px solid rgba(242,233,219,.22)}
+  .stat:first-child{border-left:none;padding-left:0}
+  .stat b{display:block;font:400 clamp(2.4rem,5vw,4.2rem) var(--ff-d);line-height:1}
+  .stat b sup{font-size:.45em;color:var(--sand)}
+  .stat span{display:block;margin-top:10px;font:500 12px var(--ff-t);letter-spacing:.18em;text-transform:uppercase;color:#E9C7A4}
+
+  /* ============ ПРОЦЕСС ============ */
+  .steps{max-width:880px}
+  .step{display:grid;grid-template-columns:130px 1fr;gap:clamp(20px,4vw,54px);padding:clamp(28px,3.4vw,44px) 0;border-top:1px solid var(--line-d);align-items:start}
+  .step:last-child{border-bottom:1px solid var(--line-d)}
+  .step-num{font:400 clamp(2.2rem,4vw,3.4rem) var(--ff-d);color:var(--sand);line-height:1}
+  .step h3{font-size:clamp(1.25rem,2vw,1.6rem);margin-bottom:10px}
+  .step p{color:#B3A28B;max-width:58ch}
+  .step p strong{color:var(--cream);font-weight:600}
+
+  /* ============ КОНТАКТЫ ============ */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:start}
+  .c-phone{display:inline-flex;flex-direction:column;font:400 clamp(1.7rem,3.4vw,2.7rem) var(--ff-d);color:var(--ink);transition:.25s;line-height:1.2}
+  .c-phone:hover{color:var(--terra)}
+  .c-phone small{font:600 11px var(--ff-t);letter-spacing:.26em;text-transform:uppercase;color:var(--ink2);margin-bottom:10px}
+  .msgr{display:flex;gap:12px;margin:26px 0 34px;flex-wrap:wrap}
+  .msgr a{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border:1px solid var(--line);border-radius:2px;font:600 13.5px var(--ff-t);transition:.25s}
+  .msgr a i{font-size:19px}
+  .msgr a:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);transform:translateY(-2px)}
+  .c-addr{display:flex;gap:14px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--line);font-size:15.5px}
+  .c-addr i{font-size:22px;color:var(--terra);flex:none;margin-top:2px}
+  .c-addr b{display:block;font:600 12px var(--ff-t);letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);margin-bottom:5px}
+  .c-price{display:flex;gap:14px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--ink2)}
+  .c-price i{font-size:22px;color:var(--terra);flex:none;margin-top:2px}
+  .c-price strong{color:var(--ink)}
+
+  .form-card{background:var(--dark);color:var(--cream);border-radius:4px;padding:clamp(26px,3.4vw,44px);box-shadow:0 30px 70px -30px rgba(36,20,8,.55)}
+  .form-card h3{font-size:clamp(1.4rem,2.2vw,1.85rem)}
+  .form-card>p{color:#B3A28B;font-size:14.5px;margin:12px 0 26px}
+  .fld{margin-bottom:16px}
+  .fld label{display:block;font:600 11px var(--ff-t);letter-spacing:.2em;text-transform:uppercase;color:#A6957E;margin-bottom:8px}
+  .fld input,.fld textarea{width:100%;background:rgba(242,233,219,.06);border:1px solid var(--line-d);border-radius:2px;color:var(--cream);font:400 15px var(--ff-t);padding:14px 16px;transition:.25s;resize:vertical}
+  .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--sand);background:rgba(242,233,219,.09)}
+  .fld input.err,.fld textarea.err{border-color:#E06A44}
+  .form-card .btn{width:100%;justify-content:center;margin-top:8px}
+  .form-alt{margin-top:14px;text-align:center;font-size:13px;color:#9C8B74}
+  .form-alt a{color:var(--sand);border-bottom:1px dotted var(--sand)}
+  .map-block{margin-top:clamp(44px,6vw,80px)}
+  .map-frame{border-radius:4px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px -30px rgba(36,20,8,.4);height:440px;background:var(--bg2)}
+  .map-frame iframe{width:100%;height:100%;border:0;filter:saturate(.85) contrast(1.02)}
+  .map-links{display:flex;gap:22px;margin-top:16px;flex-wrap:wrap}
+  .map-links a{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--ff-t);letter-spacing:.06em;color:var(--ink2);border-bottom:1px dotted var(--ink2);padding-bottom:2px;transition:.25s}
+  .map-links a:hover{color:var(--terra);border-color:var(--terra)}
+  .map-links i{font-size:15px}
+
+  /* ============ ФУТЕР ============ */
+  .footer{background:var(--dark);color:#A6957E;padding:52px 0 40px;border-top:1px solid rgba(242,233,219,.08)}
+  .footer-in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .footer .logo b{color:var(--cream)}
+  .footer-col{font-size:14px;line-height:1.8}
+  .footer-col b{display:block;color:var(--cream);font:600 11px var(--ff-t);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+  .footer-col a:hover{color:var(--sand)}
+  .footer-bottom{margin-top:38px;padding-top:22px;border-top:1px solid rgba(242,233,219,.08);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#7E6F5C}
+
+  /* ============ ТОСТЫ / ПЛАВАЮЩИЕ КНОПКИ ============ */
+  .toasts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:10px;width:min(92vw,460px)}
+  .toast{display:flex;gap:12px;align-items:flex-start;background:var(--dark2);color:var(--cream);border:1px solid rgba(242,233,219,.14);border-left:3px solid var(--terra);border-radius:3px;padding:15px 18px;font-size:14px;box-shadow:0 18px 44px -12px rgba(0,0,0,.5);animation:toastIn .45s cubic-bezier(.16,1,.3,1)}
+  .toast i{font-size:20px;color:var(--sand);flex:none;margin-top:1px}
+  .toast.out{animation:toastOut .35s forwards}
+  @keyframes toastIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes toastOut{to{opacity:0;transform:translateY(14px)}}
+  .floats{position:fixed;right:20px;bottom:20px;z-index:55;display:flex;flex-direction:column;gap:10px}
+  .floats a{width:52px;height:52px;border-radius:50%;background:var(--dark2);color:var(--cream);display:grid;place-items:center;font-size:24px;border:1px solid rgba(242,233,219,.14);box-shadow:0 12px 30px -8px rgba(0,0,0,.45);transition:.25s}
+  .floats a:hover{background:var(--terra);transform:translateY(-3px)}
+
+  /* ============ АДАПТИВ ============ */
+  @media(max-width:1080px){
+    .nav{display:none}
+    .burger{display:block}
+    .cut-grid,.cfg-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:860px){
+    .header-phone span{display:none}
+    .prod{grid-template-columns:1fr;gap:26px}
+    .prod-txt,.prod-vis{grid-column:1/-1}
+    .prod:nth-child(even) .prod-txt{order:1}
+    .prod:nth-child(even) .prod-vis{order:2}
+    .stats-grid{grid-template-columns:1fr 1fr;gap:30px 0}
+    .stat:nth-child(3){border-left:none;padding-left:0}
+    .contact-grid{grid-template-columns:1fr}
+    .map-frame{height:340px}
+  }
+  @media(max-width:640px){
+    .hero-facts-in{grid-template-columns:1fr 1fr}
+    .fact{padding:14px 18px}
+    .fact:nth-child(odd){border-left:none;padding-left:0}
+    .fact:nth-child(n+3){border-top:1px solid rgba(242,233,219,.14)}
+    .step{grid-template-columns:1fr;gap:8px}
+    .floats{right:14px;bottom:14px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= ШАПКА ================= -->
+<header class="header" id="header">
+  <div class="wrap header-in">
+    <a href="#top" class="logo"><b>АСК-ФАСАД</b><span>термопанели · аул Псыж, КЧР</span></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#products">Продукция</a>
+      <a href="#cut">Состав панели</a>
+      <a href="#colors">Расцветки</a>
+      <a href="#process">Производство</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="header-phone" href="tel:+79283845080"><i class="ph ph-phone"></i><span>8 928 384-50-80</span></a>
+    <button class="burger" id="burger" aria-label="Открыть меню"><i class="ph ph-list"></i></button>
+  </div>
+</header>
+
+<!-- мобильное меню -->
+<div class="mnav" id="mnav">
+  <button class="mnav-close" id="mnavClose" aria-label="Закрыть меню"><i class="ph ph-x"></i></button>
+  <a class="mlink" href="#products">Продукция</a>
+  <a class="mlink" href="#cut">Состав панели</a>
+  <a class="mlink" href="#colors">Расцветки</a>
+  <a class="mlink" href="#process">Производство</a>
+  <a class="mlink" href="#contacts">Контакты</a>
+  <div class="mnav-foot">
+    <a href="tel:+79283845080"><i class="ph ph-phone"></i>8 928 384-50-80</a>
+    <a href="https://wa.me/79283845080" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i>WhatsApp</a>
+    <a href="https://t.me/+79283845080" target="_blank" rel="noopener"><i class="ph ph-telegram-logo"></i>Telegram</a>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-veil"></div>
+  <div class="wrap hero-in">
+    <span class="kicker">Собственное производство · Карачаево-Черкесия</span>
+    <h1>Термопанели, которые <em>держат тепло</em> фасада</h1>
+    <p class="hero-sub">Производим панели из <strong>гибкого кирпича</strong> и с <strong>клинкерной плиткой «Керамин»</strong> на утеплителе ППС-25Ф. Расцветки разрабатываем сами — в том числе индивидуально под ваши потребности. От <strong>1000&nbsp;₽/м²</strong>*, цена зависит от типа и толщины панелей.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#contacts">Узнать точную цену <i class="ph ph-arrow-right"></i></a>
+      <a class="btn btn-ghost" href="#products">Смотреть продукцию</a>
+    </div>
+  </div>
+  <div class="hero-facts">
+    <div class="wrap hero-facts-in">
+      <div class="fact"><b>3000+ м²</b><span>производим в месяц</span></div>
+      <div class="fact"><b>10 дней</b><span>рабочих — на заказ</span></div>
+      <div class="fact"><b>5+ лет</b><span>опыта производства</span></div>
+      <div class="fact"><b>от 1000 ₽/м²</b><span>*цена</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= БЕГУЩАЯ СТРОКА ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <div class="mq-group">
+      <span>Гибкий кирпич</span><i class="ph-fill ph-diamond"></i>
+      <span>Клинкерная плитка «Керамин»</span><i class="ph-fill ph-diamond"></i>
+      <span>Утеплитель ППС-25Ф</span><i class="ph-fill ph-diamond"></i>
+      <span>До 3000 м² в месяц</span><i class="ph-fill ph-diamond"></i>
+      <span>Расцветки на заказ</span><i class="ph-fill ph-diamond"></i>
+      <span>Срок — 10 рабочих дней</span><i class="ph-fill ph-diamond"></i>
+      <span>Кварцевый песок · мраморная крошка</span><i class="ph-fill ph-diamond"></i>
+      <span>Свой цех в ауле Псыж</span><i class="ph-fill ph-diamond"></i>
+    </div>
+    <div class="mq-group">
+      <span>Гибкий кирпич</span><i class="ph-fill ph-diamond"></i>
+      <span>Клинкерная плитка «Керамин»</span><i class="ph-fill ph-diamond"></i>
+      <span>Утеплитель ППС-25Ф</span><i class="ph-fill ph-diamond"></i>
+      <span>До 3000 м² в месяц</span><i class="ph-fill ph-diamond"></i>
+      <span>Расцветки на заказ</span><i class="ph-fill ph-diamond"></i>
+      <span>Срок — 10 рабочих дней</span><i class="ph-fill ph-diamond"></i>
+      <span>Кварцевый песок · мраморная крошка</span><i class="ph-fill ph-diamond"></i>
+      <span>Свой цех в ауле Псыж</span><i class="ph-fill ph-diamond"></i>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ПРОДУКЦИЯ ================= -->
+<section class="sec" id="products">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="kicker">01 · Продукция</span>
+      <h2>Три линии нашего производства</h2>
+      <p>Всё делаем сами — от подготовки сырья до упаковки готовых панелей. Поэтому держим сроки, качество и любую расцветку, которая нужна заказчику.</p>
+    </div>
+
+    <!-- 01 гибкий кирпич -->
+    <article class="prod" data-reveal>
+      <div class="prod-txt">
+        <div class="prod-num">01</div>
+        <h3>Термопанели из гибкого кирпича</h3>
+        <p>Лицевой слой отливаем прямо на утеплителе — из кварцевого песка или мраморной крошки. Панель выглядит как полноценная кирпичная кладка, но монтируется за считанные дни и сразу утепляет ваш дом.</p>
+        <dl class="spec">
+          <div><dt>Основа</dt><i></i><b>ППС-25Ф</b></div>
+          <div><dt>Сырьё лицевого слоя</dt><i></i><b>кварцевый песок / акриловая дисперсия / мраморная крошка</b></div>
+          <div><dt>Расцветки</dt><i></i><b>каталог + индивидуальные</b></div>
+        </dl>
+      </div>
+      <div class="prod-vis">
+        <div class="wall" id="wallFlex"></div>
+      </div>
+    </article>
+
+    <!-- 02 клинкер Керамин -->
+    <article class="prod" data-reveal>
+      <div class="prod-txt">
+        <div class="prod-num">02</div>
+        <h3>Термопанели с клинкерной плиткой</h3>
+        <p>Классика натурального клинкера: готовую керамическую плитку завода «Керамин» (Беларусь) клеим на утеплённое основание в цеху. Заводская геометрия шва и богатая палитра коллекций — без мокрых процессов на объекте.</p>
+        <dl class="spec">
+          <div><dt>Основа</dt><i></i><b>ППС-25Ф</b></div>
+          <div><dt>Лицевой слой</dt><i></i><b>керамическая клинкерная плитка</b></div>
+          <div><dt>Производитель плитки</dt><i></i><b>«Керамин», Беларусь</b></div>
+        </dl>
+      </div>
+      <div class="prod-vis">
+        <div class="wall" id="wallClinker">
+          <span class="wall-badge"><i class="ph-fill ph-seal-check"></i>Keramin · Беларусь</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 декор -->
+    <article class="prod" data-reveal>
+      <div class="prod-txt">
+        <div class="prod-num">03</div>
+        <h3>Декоративные фасадные элементы</h3>
+        <p>Наличники, сандрики, карнизы, откосы и другие детали завершают облик фасада. Изготавливаем их на той же линии — в тон и в стиле основных панелей, под ваши окна, двери и карнизы.</p>
+        <dl class="spec">
+          <div><dt>Назначение</dt><i></i><b>окна · двери · карнизы · углы</b></div>
+          <div><dt>Материал</dt><i></i><b>как у термопанелей</b></div>
+          <div><dt>Расцветка</dt><i></i><b>в едином стиле с фасадом</b></div>
+        </dl>
+      </div>
+      <div class="prod-vis">
+        <div class="decor-card">
+          <!-- стилизованная схема: окно с наличником, сандриком и подоконником -->
+          <svg viewBox="0 0 460 300" role="img" aria-label="Схема декоративных элементов: наличник, сандрик, подоконник">
+            <rect width="460" height="300" fill="#251C14"/>
+            <!-- карниз -->
+            <rect x="30" y="26" width="400" height="12" fill="#D9A15F"/>
+            <rect x="44" y="40" width="372" height="7" fill="#B9803F"/>
+            <!-- сандрик -->
+            <polygon points="168,78 292,78 306,96 154,96" fill="#C14E27"/>
+            <rect x="160" y="96" width="140" height="7" fill="#8F3418"/>
+            <!-- наличник -->
+            <rect x="166" y="112" width="128" height="130" fill="#C14E27"/>
+            <rect x="180" y="124" width="100" height="106" fill="#17100A"/>
+            <!-- стекло с бликом -->
+            <polygon points="180,124 280,124 280,176 180,230" fill="#3A2A1B"/>
+            <polygon points="196,124 244,124 196,190" fill="rgba(242,233,219,.16)"/>
+            <!-- подоконник -->
+            <rect x="146" y="242" width="168" height="13" fill="#D9A15F"/>
+            <rect x="158" y="255" width="144" height="7" fill="#8F5E2A"/>
+            <!-- выноски -->
+            <g font-family="Onest,sans-serif" font-size="11" fill="#C4B29C" letter-spacing="1.5">
+              <line x1="330" y1="87" x2="392" y2="87" stroke="#6E5D4B" stroke-width="1"/>
+              <text x="398" y="91">САНДРИК</text>
+              <line x1="300" y1="140" x2="392" y2="140" stroke="#6E5D4B" stroke-width="1"/>
+              <text x="398" y="144">НАЛИЧНИК</text>
+              <line x1="320" y1="248" x2="392" y2="248" stroke="#6E5D4B" stroke-width="1"/>
+              <text x="398" y="252">ПОДОКОННИК</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= РАЗРЕЗ ПАНЕЛИ ================= -->
+<section class="sec dark" id="cut">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="kicker">02 · Из чего состоит панель</span>
+      <h2>Панель в разрезе</h2>
+      <p>Наведите на слой или коснитесь его — расскажем, что внутри и зачем. Переключатель выше покажет оба варианта лицевого слоя.</p>
+    </div>
+    <div class="cut-grid">
+      <div class="cut-figure" id="cutFigure" data-reveal>
+        <svg viewBox="0 0 560 620" role="img" aria-label="Схема разреза термопанели">
+          <defs>
+            <pattern id="ppsDots" width="38" height="34" patternUnits="userSpaceOnUse">
+              <circle cx="11" cy="11" r="5.5" fill="#E0D5C0"/>
+              <circle cx="30" cy="28" r="5.5" fill="#E0D5C0"/>
+            </pattern>
+          </defs>
+          <!-- основание ППС-25Ф -->
+          <g id="layerPps">
+            <rect x="8" y="150" width="544" height="440" fill="#EFE7D8"/>
+            <rect x="8" y="150" width="544" height="440" fill="url(#ppsDots)" opacity=".85"/>
+            <rect x="8" y="150" width="544" height="440" fill="none" stroke="rgba(0,0,0,.12)"/>
+            <text x="280" y="352" text-anchor="middle" font-family="Onest,sans-serif" font-weight="700" font-size="17" letter-spacing="4" fill="#8A7B66">УТЕПЛИТЕЛЬ</text>
+            <text x="280" y="382" text-anchor="middle" font-family="Prata,serif" font-size="30" fill="#5F5240">ППС-25Ф</text>
+          </g>
+          <!-- клеевой шов (гребёнка) -->
+          <g id="layerGlue">
+            <path id="gluePath" fill="#C08549"/>
+          </g>
+          <!-- лицевой слой: два варианта -->
+          <g id="layerFace">
+            <g id="faceFlex"></g>
+            <g id="faceClink" style="display:none"></g>
+          </g>
+        </svg>
+      </div>
+      <div data-reveal>
+        <div class="cut-tabs" role="tablist" aria-label="Тип лицевого слоя">
+          <button class="cut-tab active" data-face="flex" role="tab" aria-selected="true">Гибкий кирпич</button>
+          <button class="cut-tab" data-face="clink" role="tab" aria-selected="false">Клинкер «Керамин»</button>
+        </div>
+        <ul class="cut-legend" id="cutLegend">
+          <li class="active" data-layer="face">
+            <h4><s style="background:#C14E27"></s>Кирпич</h4>
+            <p id="faceLegendText">Имитация кирпичной кладки, отлитая из кварцевого песка или мраморной крошки прямо на утеплителе. Любая расцветка из каталога или индивидуальная.</p>
+          </li>
+          <li data-layer="glue">
+            <h4><s style="background:#C08549"></s>Шов</h4>
+            <p>Шов состоит из специальной акриловой дисперсии в сочетании с кварцевым песком или мраморной крошки.</p>
+          </li>
+          <li data-layer="pps">
+            <h4><s style="background:#EFE7D8"></s>Основание — ППС-25Ф</h4>
+            <p>Плотный самозатухающий пенополистирол: держит тепло, весит мало, не крошится при резке. Толщину подбираем под климат вашего региона.</p>
+          </li>
+        </ul>
+        <p class="cut-note"><i class="ph ph-fire"></i>Маркировка «Ф» в ППС-25Ф — антипиреновая добавка: материал относится к самозатухающим.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= РАСЦВЕТКИ ================= -->
+<section class="sec" id="colors">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="kicker">03 · Расцветки</span>
+      <h2>Цвет фасада выбираете вы — мы его отольём</h2>
+      <p>Оттенки лицевого слоя создаём сами, поэтому каталог шире заводского — и постоянно пополняется. Выберите цвет ниже, а если нужного нет — разработаем новую расцветку специально под ваш проект.</p>
+    </div>
+    <div class="cfg-grid">
+      <div data-reveal>
+        <div class="cfg-wall" id="cfgWall"></div>
+        <div class="cfg-name"><i class="ph-fill ph-palette"></i><span id="cfgName">«Терракота»</span></div>
+      </div>
+      <div data-reveal>
+        <p class="swatch-cap">Каталог расцветок — нажмите на оттенок</p>
+        <div class="swatches" id="cfgSwatches"></div>
+        <div class="cfg-actions">
+          <button class="btn btn-dark" id="cfgCustom">Заказать индивидуальную расцветку <i class="ph ph-arrow-up-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЦИФРЫ ================= -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat" data-reveal><b>3000<sup>+</sup></b><span>м² производим в месяц</span></div>
+    <div class="stat" data-reveal><b>10</b><span>рабочих дней на заказ</span></div>
+    <div class="stat" data-reveal><b>5<sup>+</sup></b><span>лет собственного производства</span></div>
+    <div class="stat" data-reveal><b>2</b><span>вида сырья: песок и мрамор</span></div>
+  </div>
+</section>
+
+<!-- ================= ПРОЦЕСС ================= -->
+<section class="sec dark" id="process">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="kicker">04 · Производство и сроки</span>
+      <h2>Как мы работаем</h2>
+      <p>Свой цех в ауле Псыж — без посредников и перекупщиков. Вы общаетесь напрямую с производством.</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <div class="step-num">01</div>
+        <div>
+          <h3>Заявка</h3>
+          <p>Позвоните или напишите в <strong>WhatsApp / Telegram</strong> по номеру 8-928-384-50-80. Обсудим тип панели, площадь и расцветку.</p>
+        </div>
+      </div>
+      <div class="step" data-reveal>
+        <div class="step-num">02</div>
+        <div>
+          <h3>Расчёт стоимости</h3>
+          <p>Точную цену называем <strong>лично при оформлении заказа</strong> — она зависит от расцветки, типа лицевого слоя и объёма. Так честнее всего, без «средних по сайту».</p>
+        </div>
+      </div>
+      <div class="step" data-reveal>
+        <div class="step-num">03</div>
+        <div>
+          <h3>Производство</h3>
+          <p>Отливаем лицевой слой, клеим плитку, сушим и упаковываем. Срок изготовления заказа — <strong>10 рабочих дней</strong>. Индивидуальную расцветку согласуем до запуска партии.</p>
+        </div>
+      </div>
+      <div class="step" data-reveal>
+        <div class="step-num">04</div>
+        <div>
+          <h3>Отгрузка</h3>
+          <p>Самовывоз с производства в ауле Псыж или помощь с доставкой до вашего объекта. Каждая партия проверяется перед отгрузкой.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КОНТАКТЫ ================= -->
+<section class="sec" id="contacts">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="kicker">05 · Контакты</span>
+      <h2>Свяжитесь напрямую с производством</h2>
+      <p>Без менеджеров-посредников: на связи тот, кто делает панели. Подскажем по цене, срокам и расцветкам.</p>
+    </div>
+    <div class="contact-grid">
+      <div data-reveal>
+        <a class="c-phone" href="tel:+79283845080">
+          <small>Телефон · WhatsApp · Telegram</small>
+          8 928 384-50-80
+        </a>
+        <div class="msgr">
+          <a href="https://wa.me/79283845080" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i>Написать в WhatsApp</a>
+          <a href="https://t.me/+79283845080" target="_blank" rel="noopener"><i class="ph ph-telegram-logo"></i>Написать в Telegram</a>
+        </div>
+        <div class="c-addr">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <b>Адрес производства</b>
+            Карачаево-Черкесская Республика,<br>аул Псыж, улица Шоссейная, 135
+          </div>
+        </div>
+        <div class="c-price">
+          <i class="ph ph-hand-coins"></i>
+          <div><strong>Цена — от 1000 ₽/м².</strong> Итоговую стоимость называем лично при заказе: она зависит от расцветки, типа лицевого слоя и объёма партии.</div>
+        </div>
+      </div>
+      <form class="form-card" id="quoteForm" data-reveal novalidate>
+        <h3>Оставить заявку</h3>
+        <p>Заполните форму — и отправьте её нам в WhatsApp одним нажатием.</p>
+        <div class="fld">
+          <label for="fName">Ваше имя</label>
+          <input id="fName" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+        </div>
+        <div class="fld">
+          <label for="fPhone">Телефон</label>
+          <input id="fPhone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__">
+        </div>
+        <div class="fld">
+          <label for="fMsg">Сообщение</label>
+          <textarea id="fMsg" rows="4" placeholder="Тип панели, площадь, расцветка…"></textarea>
+        </div>
+        <button class="btn btn-solid" type="submit"><i class="ph ph-whatsapp-logo"></i>Отправить в WhatsApp</button>
+        <p class="form-alt">Удобнее в Telegram? Пишите нам — <a href="https://t.me/+79283845080" target="_blank" rel="noopener">t.me по этому же номеру</a></p>
+      </form>
+    </div>
+
+    <div class="map-block" data-reveal>
+      <div class="map-frame">
+        <iframe
+          title="Карта: аул Псыж, улица Шоссейная, 135"
+          src="https://yandex.ru/map-widget/v1/?text=Карачаево-Черкесская%20Республика%2C%20аул%20Псыж%2C%20улица%20Шоссейная%2C%20135&z=16"
+          loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="map-links">
+        <a href="https://yandex.ru/maps/?text=Карачаево-Черкесская%20Республика%2C%20аул%20Псыж%2C%20улица%20Шоссейная%2C%20135" target="_blank" rel="noopener"><i class="ph ph-map-pin"></i>Открыть в Яндекс Картах</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=%D0%B0%D1%83%D0%BB%20%D0%9F%D1%81%D1%8B%D0%B6%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A8%D0%BE%D1%81%D1%81%D0%B5%D0%B9%D0%BD%D0%B0%D1%8F%2C%20135" target="_blank" rel="noopener"><i class="ph ph-navigation-arrow"></i>Открыть в Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="#top" class="logo"><b>АСК-ФАСАД</b><span>термопанели · аул Псыж, КЧР</span></a>
+    <div class="footer-col">
+      <b>Производство</b>
+      Карачаево-Черкесская Республика,<br>аул Псыж, ул. Шоссейная, 135
+    </div>
+    <div class="footer-col">
+      <b>Связь</b>
+      <a href="tel:+79283845080">8 928 384-50-80</a><br>
+      <a href="https://wa.me/79283845080" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://t.me/+79283845080" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <div class="footer-col">
+      <b>Условия</b>
+      Срок заказа — 10 рабочих дней<br>
+      От 1000 ₽/м² · до 3000 м²/мес
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <span id="year"></span> АСК-Фасад · производство термопанелей</span>
+    <span>Цены на сайте не являются публичной офертой — точную стоимость уточняйте при заказе.</span>
+  </div>
+</footer>
+
+<!-- тосты и плавающие кнопки -->
+<div class="toasts" id="toasts"></div>
+<div class="floats">
+  <a href="https://wa.me/79283845080" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+  <a href="https://t.me/+79283845080" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="ph ph-telegram-logo"></i></a>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- утилиты ---------- */
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  // детерминированный «шум» по координатам — вариации кирпичей стабильны при перерисовке
+  const noise=(x,y)=>{const s=Math.sin(x*12.9898+y*78.233)*43758.5453;return s-Math.floor(s);};
+  const brickColor=(c,dh,ds,dl)=>`hsl(${clamp(c.h+dh,0,360)},${clamp(c.s+ds,4,100)}%,${clamp(c.l+dl,4,96)}%)`;
+
+  /* ---------- генератор кирпичной кладки (SVG) ---------- */
+  // возвращает строку rect-ов с перевязкой и лёгкими вариациями оттенка
+  function bricksSVG(o){
+    const stepX=o.bw+o.gap, stepY=o.bh+o.gap;
+    let out='';
+    for(let r=0;r<o.rows;r++){
+      const off=(r%2)?-(o.bw/2+o.gap/2):0;
+      for(let c=0;c<=o.cols+1;c++){
+        const x=off+c*stepX, y=r*stepY+o.top;
+        if(x>o.width) continue;
+        const n=noise(r*3.7,c*5.1);
+        const dh=(n-.5)*2*o.vh, dl=(noise(c*2.3,r*8.9)-.5)*2*o.vl;
+        out+=`<rect x="${x.toFixed(1)}" y="${y}" width="${o.bw}" height="${o.bh}" fill="${brickColor(o.color,dh,0,dl)}"/>`;
+        if(o.gloss) out+=`<rect x="${x.toFixed(1)}" y="${y}" width="${o.bw}" height="5" fill="rgba(255,255,255,.16)"/>`;
+      }
+    }
+    return out;
+  }
+  // настенная «витрина» для карточек продукции
+  function buildWall(id,color,gloss){
+    const el=document.getElementById(id);
+    const cols=12, bw=62, bh=29, gap=4;
+    const w=cols*(bw+gap), h=Math.round(w*10/16);
+    const rows=Math.ceil(h/(bh+gap))+1;
+    el.insertAdjacentHTML('afterbegin',
+      `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="${w}" height="${h}" fill="#17100A"/>${bricksSVG({cols,rows,bw,bh,gap,top:0,width:w,color,vh:9,vl:7,gloss})}</svg>`);
+  }
+  buildWall('wallFlex',{h:16,s:52,l:44},false);
+  buildWall('wallClinker',{h:7,s:46,l:37},true);
+
+  /* ---------- HERO: живая кирпичная стена ---------- */
+  const cv=document.getElementById('heroCanvas'), ctx=cv.getContext('2d');
+  const hero=document.getElementById('top');
+  let W,H,bw,stepX,stepY,cols,rows,bricks=[],heat=[];
+  const mouse={x:.5,y:.42}, ghost={x:.5,y:.42};
+  let lastInput=0, running=true;
+
+  function resizeHero(){
+    const dpr=Math.min(devicePixelRatio||1,2);
+    W=hero.clientWidth; H=hero.clientHeight;
+    cv.width=W*dpr; cv.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    bw=W<640?46:64; const gap=3;
+    stepX=bw+gap; stepY=(W<640?24:30)+gap;
+    cols=Math.ceil(W/stepX)+2; rows=Math.ceil(H/stepY)+1;
+    bricks=[]; heat=new Float32Array(cols*rows);
+    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+      const n=noise(r*1.7,c*3.1);
+      bricks.push({x:c*stepX+(r%2?stepX/2:0)-stepX/2, y:r*stepY, dl:(n-.5)*6, dh:(noise(c*9.1,r*4.7)-.5)*8});
+    }
+  }
+  resizeHero();
+  addEventListener('resize',resizeHero);
+
+  function setPointer(cx,cy){
+    const rc=hero.getBoundingClientRect();
+    mouse.x=clamp((cx-rc.left)/rc.width,0,1);
+    mouse.y=clamp((cy-rc.top)/rc.height,0,1);
+    lastInput=performance.now();
+  }
+  hero.addEventListener('pointermove',e=>setPointer(e.clientX,e.clientY),{passive:true});
+  hero.addEventListener('pointerdown',e=>{ // «тепловая волна» по клику
+    setPointer(e.clientX,e.clientY);
+    const rc=hero.getBoundingClientRect(), px=(e.clientX-rc.left), py=(e.clientY-rc.top);
+    for(let i=0;i<bricks.length;i++){
+      const b=bricks[i], d=Math.hypot(b.x+bw/2-px, b.y+stepY/2-py);
+      heat[i]=Math.max(heat[i], clamp(1-Math.abs(d-140)/80,0,1)*.95);
+    }
+  },{passive:true});
+
+  function drawHero(t){
+    // без ввода — «тепло» само гуляет по фасаду
+    if(t-lastInput>3500){
+      mouse.x=.5+.34*Math.sin(t*.00021);
+      mouse.y=.44+.3*Math.sin(t*.00013+1.7);
+    }
+    ghost.x+=(mouse.x-ghost.x)*.07;
+    ghost.y+=(mouse.y-ghost.y)*.07;
+    const px=ghost.x*W, py=ghost.y*H, R=Math.max(W*.16,190), R2=R*R;
+    ctx.fillStyle='#120C07'; ctx.fillRect(0,0,W,H);
+    for(let i=0;i<bricks.length;i++){
+      const b=bricks[i], cx=b.x+bw/2, cy=b.y+stepY/2;
+      const dx=cx-px, dy=cy-py, d2=dx*dx+dy*dy;
+      if(d2<R2){
+        const target=1-Math.sqrt(d2)/R;
+        heat[i]=Math.max(heat[i],target*target*(3-2*target));
+      }
+      heat[i]*=.955;
+      const k=heat[i];
+      // база: тёмный кирпич → «нагрев»: раскалённая терракота
+      const h=22+(14-22)*k+b.dh*k*.4, s=20+(82-20)*k, l=(9+(52-9)*k)+b.dl;
+      ctx.fillStyle=`hsl(${h},${s}%,${clamp(l,5,70)}%)`;
+      ctx.fillRect(b.x+1.5,b.y+1.5,bw-3,stepY-4.5);
+    }
+  }
+  if(reduceMotion){ drawHero(0); }
+  else{
+    new IntersectionObserver(en=>{running=en[0].isIntersecting;}).observe(hero);
+    (function loop(t){ if(running) drawHero(t||0); requestAnimationFrame(loop); })();
+  }
+
+  /* ---------- РАЗРЕЗ ПАНЕЛИ ---------- */
+  // лицевой слой: два варианта кладки
+  const cutFlex=document.getElementById('faceFlex'), cutClink=document.getElementById('faceClink');
+  const cutCols=8, cbw=74, cbh=40, cgap=4, cStepX=cbw+cgap;
+  const cutBrickOpts={cols:cutCols,rows:3,bw:cbw,bh:cbh,gap:cgap,top:16,width:560,vh:8,vl:6};
+  cutFlex.innerHTML=bricksSVG({...cutBrickOpts,color:{h:16,s:52,l:45}});
+  cutClink.innerHTML=bricksSVG({...cutBrickOpts,color:{h:7,s:46,l:38},gloss:true});
+  // клеевой шов с гребёнкой
+  (function(){
+    let d='M8 144 H552 V166';
+    for(let x=552;x>8;x-=26){ d+=` L${x-13} 182 L${x-26} 166`; }
+    document.getElementById('gluePath').setAttribute('d',d+' Z');
+  })();
+  // подсветка слоёв <-> легенда
+  const figure=document.getElementById('cutFigure');
+  const legendItems=[...document.querySelectorAll('#cutLegend li')];
+  function focusLayer(name){
+    figure.className='cut-figure'+(name?' focus-'+name:'');
+    legendItems.forEach(li=>li.classList.toggle('active',li.dataset.layer===name));
+  }
+  legendItems.forEach(li=>{
+    li.addEventListener('mouseenter',()=>focusLayer(li.dataset.layer));
+    li.addEventListener('mouseleave',()=>focusLayer('face'));
+    li.addEventListener('click',()=>focusLayer(li.dataset.layer));
+  });
+  ['layerFace','layerGlue','layerPps'].forEach((id,idx)=>{
+    const g=document.getElementById(id);
+    g.style.cursor='pointer';
+    g.addEventListener('mouseenter',()=>focusLayer(['face','glue','pps'][idx]));
+    g.addEventListener('mouseleave',()=>focusLayer('face'));
+  });
+  // переключатель типа лицевого слоя
+  const faceTexts={
+    flex:'Имитация кирпичной кладки, отлитая из кварцевого песка или мраморной крошки прямо на утеплителе. Любая расцветка из каталога или индивидуальная.',
+    clink:'Керамическая клинкерная плитка завода «Керамин» (Беларусь), наклеенная на основание в цеху — заводская геометрия шва и палитра коллекций.'
+  };
+  document.querySelectorAll('.cut-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.cut-tab').forEach(t=>{t.classList.toggle('active',t===tab);t.setAttribute('aria-selected',t===tab);});
+      const clink=tab.dataset.face==='clink';
+      cutClink.style.display=clink?'':'none';
+      cutFlex.style.display=clink?'none':'';
+      document.getElementById('faceLegendText').textContent=faceTexts[tab.dataset.face];
+    });
+  });
+
+  /* ---------- КОНФИГУРАТОР РАСЦВЕТОК ---------- */
+  const CFG=[
+    {name:'Терракота',   h:14, s:56, l:50},
+    {name:'Клинкер',     h:7,  s:50, l:41},
+    {name:'Песчаник',    h:32, s:42, l:60},
+    {name:'Кремовый',    h:39, s:44, l:75},
+    {name:'Шоколад',     h:16, s:44, l:29},
+    {name:'Графит',      h:220,s:9,  l:31},
+    {name:'Белый мрамор',h:40, s:13, l:82},
+    {name:'Олива',       h:72, s:20, l:44}
+  ];
+  const cfgWall=document.getElementById('cfgWall');
+  const cfgRects=[]; // {el, dh, dl, x, y}
+  (function buildCfg(){
+    const cols=11, bw=64, bh=30, gap=4;
+    const w=cols*(bw+gap), h=Math.round(w*10/16), rows=Math.ceil(h/(bh+gap))+1;
+    let svg=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="${w}" height="${h}" fill="#17100A"/>`;
+    for(let r=0;r<rows;r++){
+      const off=(r%2)?-(bw/2+gap/2):0;
+      for(let c=0;c<=cols+1;c++){
+        const x=off+c*(bw+gap), y=r*(bh+gap);
+        if(x>w) continue;
+        const dh=(noise(r*7.3,c*2.9)-.5)*10, dl=(noise(c*4.1,r*9.7)-.5)*10;
+        svg+=`<rect x="${x.toFixed(1)}" y="${y}" width="${bw}" height="${bh}" fill="${brickColor(CFG[0],dh,0,dl)}"/>`;
+        cfgRects.push({dh,dl,x:x+bw/2,y:y+bh/2,el:null});
+      }
+    }
+    svg+='</svg>';
+    cfgWall.innerHTML=svg;
+    const list=cfgWall.querySelectorAll('rect');
+    for(let i=1;i<list.length;i++) cfgRects[i-1].el=list[i]; // rect[0] — фон-шов
+  })();
+  let cfgCur=CFG[0];
+  function paintCfg(color){
+    const maxD=Math.hypot(cfgWall.clientWidth||640, cfgWall.clientHeight||400);
+    cfgRects.forEach(r=>{
+      const wave=Math.hypot(r.x,r.y)/maxD*520; // «волна» перекраски от угла
+      r.el.style.transitionDelay=reduceMotion?'0ms':wave.toFixed(0)+'ms';
+      r.el.style.fill=brickColor(color,r.dh,0,r.dl);
+    });
+  }
+  paintCfg(cfgCur);
+  const swBox=document.getElementById('cfgSwatches'), cfgNameEl=document.getElementById('cfgName');
+  CFG.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='swatch'+(i===0?' active':'');
+    b.style.setProperty('--c',`hsl(${c.h},${c.s}%,${c.l}%)`);
+    b.setAttribute('aria-label','Расцветка '+c.name);
+    b.title=c.name;
+    b.addEventListener('click',()=>{
+      swBox.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+      b.classList.add('active');
+      cfgCur=c; paintCfg(c);
+      cfgNameEl.textContent='«'+c.name+'»';
+    });
+    swBox.appendChild(b);
+  });
+  document.getElementById('cfgCustom').addEventListener('click',()=>{
+    document.getElementById('fMsg').value=`Здравствуйте! Интересует индивидуальная расцветка термопанелей (ориентир — «${cfgCur.name}»).`;
+    document.getElementById('contacts').scrollIntoView({behavior:reduceMotion?'auto':'smooth'});
+    toast('Расцветка «'+cfgCur.name+'» добавлена в заявку — допишите детали и отправьте');
+  });
+
+  /* ---------- ШАПКА / МЕНЮ ---------- */
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
+  const mnav=document.getElementById('mnav');
+  document.getElementById('burger').addEventListener('click',()=>{mnav.classList.add('open');document.body.style.overflow='hidden';});
+  const closeMenu=()=>{mnav.classList.remove('open');document.body.style.overflow='';};
+  document.getElementById('mnavClose').addEventListener('click',closeMenu);
+  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+  /* ---------- ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ---------- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target);}
+  }),{threshold:.14});
+  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+  /* ---------- ТОСТЫ ---------- */
+  function toast(msg){
+    const box=document.getElementById('toasts');
+    const t=document.createElement('div');
+    t.className='toast';
+    t.innerHTML='<i class="ph ph-check-circle"></i><span>'+msg+'</span>';
+    box.appendChild(t);
+    setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),380);},3800);
+  }
+
+  /* ---------- ФОРМА → WHATSAPP ---------- */
+  document.getElementById('quoteForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const name=document.getElementById('fName'), phone=document.getElementById('fPhone'), msg=document.getElementById('fMsg');
+    let ok=true;
+    [name,phone].forEach(f=>{
+      const bad=!f.value.trim(); f.classList.toggle('err',bad); if(bad) ok=false;
+    });
+    if(!ok){ toast('Пожалуйста, укажите имя и телефон'); return; }
+    const text=encodeURIComponent(`Заявка с сайта АСК-Фасад\nИмя: ${name.value.trim()}\nТелефон: ${phone.value.trim()}\n${msg.value.trim()?'Сообщение: '+msg.value.trim():''}`);
+    window.open('https://wa.me/79283845080?text='+text,'_blank','noopener');
+    toast('Открываем WhatsApp — отправьте сообщение, отвечу лично');
+  });
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
